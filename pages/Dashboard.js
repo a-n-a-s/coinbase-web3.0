@@ -10,6 +10,7 @@ const Dashboard = ({ address }) => {
     width: 100vw;
     background-color: #0a0b0d;
     color: white;
+    overflow: hidden;
   `;
 
   const MainContainer = styled.div`
@@ -19,8 +20,8 @@ const Dashboard = ({ address }) => {
   return (
     <Wrapper>
       <Sidebar />
-      <MainContainer>
-        <Header />
+      <MainContainer >
+        <Header walletAddress={address} />
         <Main />
       </MainContainer>
     </Wrapper>

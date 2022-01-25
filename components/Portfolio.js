@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { coins } from "../static/coins";
 import Coin from "./Coin";
+import BalanceChart from "./BalanceChart";
 const Portfolio = () => {
   const Wrapper = styled.div`
     flex: 1;
@@ -46,35 +47,38 @@ const Portfolio = () => {
 
   return (
     <Wrapper>
-      <PortfolioTable>
-        <TableItem>
-          <Title>Your Assets</Title>
-        </TableItem>
-        <Divider />
-        <Table>
+      <Content>
+        <BalanceChart />
+        <PortfolioTable>
           <TableItem>
-            <TableRow>
-              <div style={{ flex: 3 }}>Name</div>
-              <div style={{ flex: 2 }}>Balance</div>
-              <div style={{ flex: 1 }}>Price</div>
-              <div style={{ flex: 1 }}>Allocations</div>
-              <div style={{ flex: 0 }}>
-                <BsThreeDotsVertical />
-              </div>
-            </TableRow>
+            <Title>Your Assets</Title>
           </TableItem>
           <Divider />
-          <div>
-            {coins.map((coin) => (
-              <div>
-                <Coin coin={coin} />
-                {/* <h2>{coin.name}</h2> */}
-                <Divider />
-              </div>
-            ))}
-          </div>
-        </Table>
-      </PortfolioTable>
+          <Table>
+            <TableItem>
+              <TableRow>
+                <div style={{ flex: 3 }}>Name</div>
+                <div style={{ flex: 2 }}>Balance</div>
+                <div style={{ flex: 1 }}>Price</div>
+                <div style={{ flex: 1 }}>Allocations</div>
+                <div style={{ flex: 0 }}>
+                  <BsThreeDotsVertical />
+                </div>
+              </TableRow>
+            </TableItem>
+            <Divider />
+            <div>
+              {coins.map((coin) => (
+                <div>
+                  <Coin coin={coin} />
+                  {/* <h2>{coin.name}</h2> */}
+                  <Divider />
+                </div>
+              ))}
+            </div>
+          </Table>
+        </PortfolioTable>
+      </Content>
     </Wrapper>
   );
 };

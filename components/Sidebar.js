@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import CoinbaseLogo from '../assets/cb-logo.png'
+import { navItems } from "../static/navItems";
+import CoinbaseLogo from "../assets/cb-logo.png";
+
 const Sidebar = () => {
+  const [activateIcon, setActivateIcon] = useState(navItems[0].title);
   const Wrapper = styled.div`
     height: calc(100vh);
     border-right: 1px solid #282b2f;
@@ -12,21 +15,21 @@ const Sidebar = () => {
 
   const LogoContainer = styled.div`
     margin: 1.5rem 0;
-  `
+  `;
 
   const Logo = styled.div`
     width: 44%;
     object-fit: contain;
     margin-left: 1.5rem;
-  `
+  `;
 
   const NavItemsContainer = styled.div`
     margin-top: 3rem;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
-  `
+  `;
 
   const NavItem = styled.div`
     display: flex;
@@ -36,11 +39,12 @@ const Sidebar = () => {
     border-radius: 0.5rem;
     margin-bottom: 1.5rem;
     height: 4rem;
-    
-    &:hover{
-      background-color: #141519;
+
+    &:hover {
+      background-color: #242424;
+      color: #3773f5;
     }
-  `
+  `;
 
   const NavIcon = styled.div`
     background-color: #141519;
@@ -49,16 +53,29 @@ const Sidebar = () => {
     margin: 0 1rem;
     display: grid;
     place-items: center;
-
-  `
-
-  return <Wrapper>
-    <LogoContainer>
-      <Logo>
-        <Image src={} alt="Coinbase Logo"/>
-      </Logo>
-    </LogoContainer>
-  </Wrapper>;
+  `;
+  const NavTitle = styled.div``;
+  return (
+    <Wrapper>
+      <LogoContainer>
+        <Logo>
+          <Image src={CoinbaseLogo} alt="Coinbase Logo" />
+        </Logo>
+      </LogoContainer>
+      <NavItemsContainer>
+        {navItems.map((item, index) => (
+          <NavItem key={index} onClick={() => setActivateIcon(item.title)}>
+            <NavIcon>{item.icon}</NavIcon>
+            <NavTitle
+              style={{ color: item.title === activateIcon && "#3773f5" }}
+            >
+              {item.title}
+            </NavTitle>
+          </NavItem>
+        ))}
+      </NavItemsContainer>
+    </Wrapper>
+  );
 };
 
 export default Sidebar;
