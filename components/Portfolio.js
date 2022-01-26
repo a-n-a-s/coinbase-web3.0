@@ -4,6 +4,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { coins } from "../static/coins";
 import Coin from "./Coin";
 import BalanceChart from "./BalanceChart";
+import { ethers } from "ethers";
+import { ThirdwebSDK } from "@3rdweb/sdk";
 const Wrapper = styled.div`
   flex: 1;
   display: flex;
@@ -62,7 +64,7 @@ const Portfolio = ({ thirdWebTokens, sanityTokens, walletAddress }) => {
 
   const tokenToUsdPrice = {};
 
-  for (const token in sanityTokens) {
+  for (const token of sanityTokens) {
     tokenToUsdPrice[token.contractAddress] = Number(token.usdPrice);
   }
   useEffect(() => {
@@ -73,10 +75,11 @@ const Portfolio = ({ thirdWebTokens, sanityTokens, walletAddress }) => {
           return Number(balance.displayValue) * tokenToUsdPrice[token.address];
         })
       );
+
       setWalletBalance(totalBalance.reduce((acc, curr) => acc + curr, 0));
     };
-    return calculateTotalBalance();
-  }, [thirdWebTokens, sanityTokens]);
+    calculateTotalBalance();
+  }, []);
 
   return (
     <Wrapper>
@@ -87,7 +90,7 @@ const Portfolio = ({ thirdWebTokens, sanityTokens, walletAddress }) => {
               <BalanceTitle>Portfolio Balance</BalanceTitle>
               <BalanceValue>
                 {"$"}
-                {walletBalance.toLocalString()}
+                {walletBalance?.toLocaleString()}
                 {/* 46,000 */}
               </BalanceValue>
             </Balance>

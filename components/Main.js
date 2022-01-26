@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   }
 `;
 const Main = ({ walletAddress, sanityTokens, thirdWebTokens }) => {
+  
   return (
     <Wrapper>
       <Portfolio

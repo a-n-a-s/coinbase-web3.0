@@ -34,23 +34,16 @@ const Dashboard = ({ address }) => {
 
   useEffect(() => {
     const getSanityAndthirdWebTokens = async () => {
-      // const coins = await fetch(
-      //   "https://kh7zyq8f.api.sanity.io/v1/data/query/production?query=*%5B_type%20%3D%3D%20'coins'%5D%7B%0A%20%20name%2C%0A%20%20usdPrice%2C%0A%20%20contarctAddress%2C%0A%20%20symbol%2C%0A%20%20logo%2C%0A%7D"
-      // );
-
-      // const sanityTokens = await coins.json().result;
-
       await fetch(
         "https://kh7zyq8f.api.sanity.io/v1/data/query/production?query=*%5B_type%20%3D%3D%20'coins'%5D%7B%0A%20%20name%2C%0A%20%20usdPrice%2C%0A%20%20contractAddress%2C%0A%20%20symbol%2C%0A%20%20logo%2C%0A%7D"
       )
         .then((response) => response.json())
         .then((data) => setSanityTokens(data.result));
 
-
-
       setThirdWebTokens(
         sanityTokens?.map((token) => sdk.getTokenModule(token.contractAddress))
       );
+      // console.log(thirdWebTokens)
     };
     return getSanityAndthirdWebTokens();
   }, []);
