@@ -3,39 +3,38 @@ import styled from "styled-components";
 import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-const Coin = ({ coin }) => {
-  const Wrapper = styled.div`
-    display: flex;
+const Wrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  & > div {
     width: 100%;
+    display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 2rem;
+  }
+`;
 
-    & > div {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-  `;
+const NameCol = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const CoinIcon = styled.div`
+  width: 1.8rem;
+  margin-right: 1rem;
+`;
 
-  const NameCol = styled.div`
-    display: flex;
-    align-items: center;
-  `;
-  const CoinIcon = styled.div`
-    width: 1.8rem;
-    margin-right: 1rem;
-  `;
-
-  const Primary = styled.div`
-    margin-bottom: 0.1rem;
-  `;
-  const Secondary = styled.div`
-    color: #8a919e;
-    font-size: 0.8rem;
-  `;
-
+const Primary = styled.div`
+  margin-bottom: 0.1rem;
+`;
+const Secondary = styled.div`
+  color: #8a919e;
+  font-size: 0.8rem;
+`;
+const Coin = ({ coin }) => {
   return (
     <Wrapper>
       <div>
@@ -65,7 +64,7 @@ const Coin = ({ coin }) => {
             {coin.priceUsd}
           </Primary>
           <div style={{ color: coin.change < 0 ? "#f0616d" : "#26ad75" }}>
-            {coin.change > 0 && "+" }
+            {coin.change > 0 && "+"}
             {coin.change}%
           </div>
         </div>

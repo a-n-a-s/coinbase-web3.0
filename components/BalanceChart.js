@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
+
+const Wrapper = styled.div``;
 const BalanceChart = () => {
-  const Wrapper = styled.div``;
   const data = {
     labels: [
       "Apr",
