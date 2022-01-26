@@ -56,7 +56,7 @@ const WalletTitle = styled.div`
 const WalletAddress = styled.div`
   font-size: 0.8rem;
 `;
-const Header = ({ walletAddress, conncetWallet }) => {
+const Header = ({ walletAddress, conncetWallet , sanityTokens }) => {
   const router = useRouter();
 
   const customStyles = {
@@ -97,7 +97,7 @@ const Header = ({ walletAddress, conncetWallet }) => {
         onRequestClose={() => router.push("/")}
         style={customStyles}
       >
-        <TransferModal />
+        <TransferModal sanityTokens={sanityTokens} />
       </Modal>
     </Wrapper>
   );

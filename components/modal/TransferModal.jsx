@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Transfer from "./Transfer";
 
 const Wrapper = styled.div`
   height: 35rem;
@@ -31,8 +32,13 @@ const Option = styled.div`
   }
 `;
 
-const TransferModal = () => {
+const ModalMain = styled.div`
+  padding: 1rem;
+  flex: 1;
+`;
+const TransferModal = ({ sanityTokens }) => {
   const [action, setAction] = useState("Send");
+  const [selectedToken, setSelectedToken] = useState(sanityToken[0]);
 
   const selectedStyle = {
     color: "#3773f5",
@@ -40,6 +46,18 @@ const TransferModal = () => {
   const unselectedStyle = {
     border: "1px solid #282b2f",
   };
+
+  const selectedModal = (option) => {
+    switch (option) {
+      case "Send":
+        return <Transfer selectedToken={selectedToken} />;
+      case "Receive":
+        return <h2>Receive</h2>;
+      default:
+        return <h2>Send</h2>;
+    }
+  };
+
   return (
     <Wrapper>
       <Selector>
@@ -56,6 +74,7 @@ const TransferModal = () => {
           <p>Receive</p>
         </Option>
       </Selector>
+      <ModalMain>{selectedModal(action)}</ModalMain>
     </Wrapper>
   );
 };
